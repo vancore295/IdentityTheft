@@ -17,11 +17,8 @@
     </div>
 
     <div class="col-lg-6">
-        <div *ngIf="cardSet && factors">
-            {{factors.numerator}} {{factors.denominator}}
-        </div>
         <ng-container>
-            <app-equiivilent-cards class="col-md-6" *ngIf="cardSet && factors != undefined" [parentCard]="factors">
+            <app-equiivilent-cards class="col-md-6" *ngIf="cardSet && factors" [parentCard]="factors">
 
             </app-equiivilent-cards>
         </ng-container>

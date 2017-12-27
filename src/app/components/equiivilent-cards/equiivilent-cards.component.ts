@@ -19,7 +19,7 @@ export class EquiivilentCardsComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-    this.deck = this.generateNewCards(this.factors);
+    this.deck = this.generateNewCards(this.parentCard);
    }
 
   setFactors(factors: any) {
