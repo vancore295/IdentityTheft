@@ -1,0 +1,29 @@
+<h3>Choose denominator</h3>
+<div class="row">
+    <ng-container>
+        <button class="btn btn-primary" *ngFor="let num of denominators" (click)="chooseDeck(num)">{{ num }}</button>
+    </ng-container>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <ng-container *ngIf="deck.length > 0">
+            <!--for event emmiters chile output event goes first then patent recever function goes an argument for the output-->
+            <div class="row">
+                <app-fraction-card class="col-md-6" *ngFor="let card of deck" [cardData]="card" (cardSelectedEmiter)="getParentCard($event)">
+
+                </app-fraction-card>
+            </div>
+        </ng-container>
+    </div>
+
+    <div class="col-lg-6">
+        <div *ngIf="cardSet && factors">
+            {{factors.numerator}} {{factors.denominator}}
+        </div>
+        <ng-container>
+            <app-equiivilent-cards class="col-md-6" *ngIf="cardSet && factors != undefined" [parentCard]="factors">
+
+            </app-equiivilent-cards>
+        </ng-container>
+    </div>
+</div>
