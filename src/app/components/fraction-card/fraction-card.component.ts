@@ -14,13 +14,31 @@ export class FractionCardComponent implements OnInit {
   @ViewChild('myCanvas') line;
   @Output() cardSelectedEmiter = new EventEmitter<Fraction>();
 
-  factors; any;
+  factors: Fraction;
+  selected: Boolean = false;
   subscription: Subscription;
 
 
   ngAfterViewInit(): void {
+    this.createCard('#000000');
+  }
+
+  constructor(private cardService: CardService) { }
+
+  ngOnInit() {
+  }
+
+   selectCard(factors: Fraction) {
+    this.cardSelectedEmiter.emit(factors);
+    this.selected = true;
+    this.createCard('#20bb20');
+  }
+
+  createCard(color: any) {
     const canvas = this.line.nativeElement;
     this.context = canvas.getContext('2d');
+    this.context.fillStyle = color;
+    this.context.strokeStyle = color;
 
     this.context.font = '48px serif';
     this.context.fillText(this.cardData.numerator.toString(), canvas.width - (canvas.width * .7), canvas.height / 3);
@@ -32,15 +50,6 @@ export class FractionCardComponent implements OnInit {
     this.context.stroke();
 
     this.context.fillText(this.cardData.denominator.toString(), canvas.width - (canvas.width * .7), canvas.height - (canvas.height / 7));
-  }
-
-  constructor(private cardService: CardService) { }
-
-  ngOnInit() {
-  }
-
-   selectCard(factors: Fraction) {
-    this.cardSelectedEmiter.emit(factors);
   }
 
 
