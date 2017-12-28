@@ -63,7 +63,7 @@ export class FractionCardComponent implements OnInit, OnChanges, AfterViewInit {
     currentParent.denominator = data.denominator;
     if ((currentParent.numerator === this.cardData.numerator) && (currentParent.denominator === this.cardData.denominator)) {
       this.selected = true;
-      this.createCard('#20bb20');
+      this.createCard('#0000ff');
     } else {
       this.selected = false;
       this.createCard('#000000');

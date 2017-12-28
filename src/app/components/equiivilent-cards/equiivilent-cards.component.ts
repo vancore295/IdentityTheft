@@ -14,7 +14,6 @@ export class EquiivilentCardsComponent implements OnInit, OnChanges {
   deck: Fraction[];
 
   constructor(private cardService: CardService) {
-    console.log('paretn card: ', this.parentCard);
     this.deck = [];
   }
 
@@ -23,9 +22,7 @@ export class EquiivilentCardsComponent implements OnInit, OnChanges {
    }
 
   setFactors(factors: any) {
-    console.log('flarg');
     this.factors = factors;
-    console.log('Equivilent cards factors: ', this.factors);
   }
 
   ngOnChanges(changes: SimpleChanges) {

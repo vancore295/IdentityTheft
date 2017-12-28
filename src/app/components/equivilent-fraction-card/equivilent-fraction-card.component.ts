@@ -18,6 +18,8 @@ export class EquivilentFractionCardComponent implements OnInit, OnChanges, After
 
   factors: Fraction;
   selected: Boolean = false;
+  fractionValue: Number;
+  correct: Boolean = false;
 
   constructor() { }
 
@@ -32,10 +34,21 @@ export class EquivilentFractionCardComponent implements OnInit, OnChanges, After
   }
 
   ngOnInit() {
+    this.fractionValue = this.currentParent.numerator / this.currentParent.denominator;
   }
 
   selectCard(factors: Fraction) {
     this.cardSelectedEmiter.emit(factors);
+  }
+
+  checkEquivalence(fraction: Fraction) {
+    const currentValue = fraction.numerator / fraction.denominator;
+    if (this.fractionValue === currentValue) {
+      this.correct = true;
+      this.createCard('#008000');
+    } else {
+      this.createCard('#ff0000');
+    }
   }
 
   createCard(color: any) {
