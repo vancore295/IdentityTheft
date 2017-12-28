@@ -1,14 +1,15 @@
-import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter } from '@angular/core';
+import { OnChanges, SimpleChanges } from '@angular/core';
 import { CardService } from '../../services/card-service/card.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Fraction } from '../../classes/fraction';
 
 @Component({
-  selector: 'app-fraction-card',
-  templateUrl: './fraction-card.component.html',
-  styleUrls: ['./fraction-card.component.css']
+  selector: 'app-equivilent-fraction-card',
+  templateUrl: './equivilent-fraction-card.component.html',
+  styleUrls: ['./equivilent-fraction-card.component.css']
 })
-export class FractionCardComponent implements OnInit, OnChanges {
+export class EquivilentFractionCardComponent implements OnInit, OnChanges {
   context: CanvasRenderingContext2D;
   @Input() cardData: Fraction;
   @Input() currentParent: Fraction;
@@ -17,8 +18,8 @@ export class FractionCardComponent implements OnInit, OnChanges {
 
   factors: Fraction;
   selected: Boolean = false;
-  subscription: Subscription;
 
+  constructor() { }
 
   ngAfterViewInit(): void {
     this.createCard('#000000');
@@ -30,12 +31,10 @@ export class FractionCardComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor(private cardService: CardService) { }
-
   ngOnInit() {
   }
 
-   selectCard(factors: Fraction) {
+  selectCard(factors: Fraction) {
     this.cardSelectedEmiter.emit(factors);
   }
 
@@ -69,6 +68,5 @@ export class FractionCardComponent implements OnInit, OnChanges {
       this.createCard('#000000');
     }
   }
-
 
 }

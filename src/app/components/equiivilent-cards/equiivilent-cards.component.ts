@@ -28,10 +28,12 @@ export class EquiivilentCardsComponent implements OnInit, OnChanges {
     console.log('Equivilent cards factors: ', this.factors);
   }
 
-  ngOnChanges(changes: SimpleChanges) { }
+  ngOnChanges(changes: SimpleChanges) {
+    this.deck = this.generateNewCards(this.parentCard);
+  }
 
   generateNewCards(factors: Fraction) {
-    const deck: Fraction[] = new Array<Fraction>();
+    let deck: Fraction[] = new Array<Fraction>();
     let newNom = 0;
     let newDennom = 0;
     let multiple = 0;
@@ -58,7 +60,26 @@ export class EquiivilentCardsComponent implements OnInit, OnChanges {
       deck.push(newFraction);
     }
 
+    deck = this.shuffle(deck);
+
     return deck;
+  }
+
+  shuffle(array: Array<any>) {
+    let currentIndex = array.length;
+    let tempVal;
+    let randomIndex;
+
+    while (0 !== currentIndex) {
+       randomIndex = Math.floor(Math.random() * currentIndex);
+       currentIndex -= 1;
+
+       tempVal = array[currentIndex];
+       array[currentIndex] = array[randomIndex];
+       array[randomIndex] = tempVal;
+    }
+
+    return array;
   }
 
   generateRandomNumbers(min: number, max: number) {

@@ -17,6 +17,7 @@ import { CardService } from './services/card-service/card.service';
 
 // Routes
 import { RoutingModule } from './routing.module';
+import { EquivilentFractionCardComponent } from './components/equivilent-fraction-card/equivilent-fraction-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RoutingModule } from './routing.module';
     EquiivilentCardsComponent,
     FractionCardComponent,
     PageNotFoundComponent,
-    GameComponent
+    GameComponent,
+    EquivilentFractionCardComponent
   ],
   imports: [
     BrowserModule,

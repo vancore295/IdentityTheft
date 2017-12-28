@@ -1,7 +1,7 @@
 <div class="row">
     <ng-container *ngIf="deck.length > 0">
-        <app-fraction-card class="col-md-6" *ngFor="let card of deck" [cardData]="card" (cardSelected)="newCard($event)">
+        <app-equivilent-fraction-card class="col-md-6" *ngFor="let card of deck" [cardData]="card" (cardSelected)="newCard($event)">
 
-        </app-fraction-card>
+        </app-equivilent-fraction-card>
     </ng-container>
 </div>
