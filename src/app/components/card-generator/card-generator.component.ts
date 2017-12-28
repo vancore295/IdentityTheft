@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { CardService } from '../../services/card-service/card.service';
 import { EventEmitter } from '@angular/core';
 import { Fraction } from '../../classes/fraction';
@@ -10,6 +10,7 @@ import { Fraction } from '../../classes/fraction';
   providers: [CardService]
 })
 export class CardGeneratorComponent implements OnInit {
+  @Output() cardSelectedEmiter = new EventEmitter<Boolean>();
   ones = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   twos = [3, 5, 7, 9, 11];
   threes = [4, 5, 7, 8, 10, 11];
@@ -97,7 +98,7 @@ export class CardGeneratorComponent implements OnInit {
 
   getParentCard(card: Fraction) {
     this.factors = card;
-    if (this.factors !== null && this.factors !== undefined) {
+    if (this.factors) {
       console.log(this.factors);
       this.cardSet = true;
     }

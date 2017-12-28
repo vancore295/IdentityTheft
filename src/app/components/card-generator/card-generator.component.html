@@ -9,7 +9,7 @@
         <ng-container *ngIf="deck.length > 0">
             <!--for event emmiters chile output event goes first then patent recever function goes an argument for the output-->
             <div class="row">
-                <app-fraction-card class="col-md-6" *ngFor="let card of deck" [cardData]="card" (cardSelectedEmiter)="getParentCard($event)">
+                <app-fraction-card class="col-md-6" *ngFor="let card of deck" [cardData]="card" [currentParent]="factors" (cardSelectedEmiter)="getParentCard($event)">
 
                 </app-fraction-card>
             </div>

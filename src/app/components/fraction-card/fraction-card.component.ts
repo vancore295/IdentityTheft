@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, } from '@angular/core';
+import { Component, Input, Output, OnInit, AfterViewInit, ViewChild, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CardService } from '../../services/card-service/card.service';
 import { Subscription } from 'rxjs/Subscription';
 import { Fraction } from '../../classes/fraction';
@@ -8,9 +8,10 @@ import { Fraction } from '../../classes/fraction';
   templateUrl: './fraction-card.component.html',
   styleUrls: ['./fraction-card.component.css']
 })
-export class FractionCardComponent implements OnInit {
+export class FractionCardComponent implements OnInit, OnChanges {
   context: CanvasRenderingContext2D;
   @Input() cardData: Fraction;
+  @Input() currentParent: Fraction;
   @ViewChild('myCanvas') line;
   @Output() cardSelectedEmiter = new EventEmitter<Fraction>();
 
@@ -23,6 +24,22 @@ export class FractionCardComponent implements OnInit {
     this.createCard('#000000');
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.currentParent) {
+      const data: any = changes.currentParent.currentValue;
+      const currentParent: Fraction = new Fraction;
+      currentParent.numerator = data.numerator;
+      currentParent.denominator = data.denominator;
+      if ((currentParent.numerator === this.cardData.numerator) && (currentParent.denominator === this.cardData.denominator)) {
+        this.selected = true;
+        this.createCard('#20bb20');
+      } else {
+        this.selected = false;
+        this.createCard('#000000');
+      }
+    }
+  }
+
   constructor(private cardService: CardService) { }
 
   ngOnInit() {
@@ -30,15 +47,13 @@ export class FractionCardComponent implements OnInit {
 
    selectCard(factors: Fraction) {
     this.cardSelectedEmiter.emit(factors);
-    this.selected = true;
-    this.createCard('#20bb20');
   }
 
   createCard(color: any) {
     const canvas = this.line.nativeElement;
     this.context = canvas.getContext('2d');
-    this.context.fillStyle = color;
-    this.context.strokeStyle = color;
+    this.context.fillStyle = color; // sets the color of the numbers
+    this.context.strokeStyle = color; // sets the color of the line
 
     this.context.font = '48px serif';
     this.context.fillText(this.cardData.numerator.toString(), canvas.width - (canvas.width * .7), canvas.height / 3);
