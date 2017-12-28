@@ -9,7 +9,7 @@ import { Fraction } from '../../classes/fraction';
   templateUrl: './equivilent-fraction-card.component.html',
   styleUrls: ['./equivilent-fraction-card.component.css']
 })
-export class EquivilentFractionCardComponent implements OnInit, OnChanges {
+export class EquivilentFractionCardComponent implements OnInit, OnChanges, AfterViewInit {
   context: CanvasRenderingContext2D;
   @Input() cardData: Fraction;
   @Input() currentParent: Fraction;

@@ -8,7 +8,7 @@ import { Fraction } from '../../classes/fraction';
   templateUrl: './fraction-card.component.html',
   styleUrls: ['./fraction-card.component.css']
 })
-export class FractionCardComponent implements OnInit, OnChanges {
+export class FractionCardComponent implements OnInit, OnChanges, AfterViewInit {
   context: CanvasRenderingContext2D;
   @Input() cardData: Fraction;
   @Input() currentParent: Fraction;
