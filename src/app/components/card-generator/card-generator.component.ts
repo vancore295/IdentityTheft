@@ -99,7 +99,6 @@ export class CardGeneratorComponent implements OnInit {
   getParentCard(card: Fraction) {
     this.factors = card;
     if (this.factors) {
-      console.log(this.factors);
       this.cardSet = true;
     }
   }
